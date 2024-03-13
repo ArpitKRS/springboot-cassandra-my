@@ -1,0 +1,8 @@
+spring:
+  cassandra:
+    port: 9042
+    contact-points: localhost
+    keyspace-name: mynewkeyspace
+    schema-action: CREATE_IF_NOT_EXISTS
+    entity-base-packages: com.example.cassandra.springbootcassandrademo.model
+    local-datacenter: datacenter1

@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api")
@@ -23,7 +24,7 @@ public class ItemController {
     }
 
     @GetMapping("/items/{id}")
-    public ResponseEntity<Item> findById(@PathVariable("id") Integer itemId) {
+    public ResponseEntity<Item> findById(@PathVariable("id") UUID itemId) {
         Item item = itemRepository.findById(itemId).orElseThrow(
                 () -> new ResourceNotFoundException("Item not found with id: " + itemId));
         return ResponseEntity.ok().body(item);
@@ -35,7 +36,7 @@ public class ItemController {
     }
 
     @PutMapping("/items/{id}")
-    public ResponseEntity<Item> updateItem(@PathVariable("id") Integer itemId, @RequestBody Item itemDetails) {
+    public ResponseEntity<Item> updateItem(@PathVariable("id") UUID itemId, @RequestBody Item itemDetails) {
         Item item = itemRepository.findById(itemId).orElseThrow(
                 () -> new ResourceNotFoundException("Item not found with id: " + itemId));
         item.setName(itemDetails.getName());
@@ -44,7 +45,7 @@ public class ItemController {
     }
 
     @DeleteMapping("/items/{id}")
-    public ResponseEntity<Void> deleteItem(@PathVariable("id") Integer itemId) {
+    public ResponseEntity<Void> deleteItem(@PathVariable("id") UUID itemId) {
         Item item = itemRepository.findById(itemId).orElseThrow(
                 () -> new ResourceNotFoundException("Item not found with id: " + itemId));
         itemRepository.delete(item);

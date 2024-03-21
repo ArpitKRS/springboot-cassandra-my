@@ -1,5 +1,7 @@
 package com.example.cassandra.springbootcassandra.model;
 
+import java.util.UUID;
+
 import org.springframework.data.cassandra.core.mapping.PrimaryKey;
 import org.springframework.data.cassandra.core.mapping.Table;
 
@@ -14,7 +16,7 @@ import lombok.NoArgsConstructor;
 public class Item {
 
     @PrimaryKey
-    private int id;
+    private UUID id;
     private String name;
     private String date;
     private String productSold;
